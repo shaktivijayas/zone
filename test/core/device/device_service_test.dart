@@ -27,6 +27,7 @@ void main() {
     final hash3 = service.hashUuid('22222222-2222-2222-2222-222222222222');
 
     expect(hash1.length, 16);
+    expect(hash1, equals('a7428c83b0febe1c'));
     expect(hash1, equals(hash2));
     expect(hash1, isNot(equals(hash3)));
   });
