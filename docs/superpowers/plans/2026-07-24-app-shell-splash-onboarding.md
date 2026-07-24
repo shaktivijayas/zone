@@ -1652,9 +1652,9 @@ Verify, comparing side-by-side against the reference screenshot at `C:\Users\sha
 - Relaunch the app (refresh the Chrome tab): confirm Splash now routes straight to the Main Shell (skipping Onboarding), since `onboarding_complete` is persisted.
 - From a fresh state (clear browser local storage or use a new incognito window), confirm tapping "Skip" on slide 1 also reaches the Main Shell directly.
 
-- [ ] **Step 3: Record the result**
+- [x] **Step 3: Record the result**
 
-If everything matches, note "Visual verification passed" in the plan file under this task and check it off. If something doesn't match the screenshot (spacing, color, copy), file it as a specific fix and apply it directly (small, targeted CSS/widget property changes — no new task needed for minor visual tweaks), then re-run Step 1-2.
+**Visual verification passed** (2026-07-24). Ran `flutter run -d chrome --web-port=8765`, drove the app via the claude-in-chrome browser tools: Splash auto-advanced to Onboarding slide 1 after ~2s; all 3 slides matched the reference screenshot's headings, subtext, progress-pill state, and mock cards (map-pin chip, Alert feed-post card with 42/18 counts, Campus Dashboard showcase card with Flutter/Firebase/Groq chips); slide 3 showed the full-width black "Get Started" button; tapping it landed on the Main Shell with all 4 bottom-nav tabs switching correctly (active/inactive icon+label color, placeholder body text swap); reloading the page after completing onboarding skipped straight to `/#/home` (Main Shell) rather than showing Onboarding again, confirming `onboarding_complete` persistence across a fresh page load. No visual or functional issues found — no fixes needed.
 
 - [ ] **Step 4: Final push**
 
