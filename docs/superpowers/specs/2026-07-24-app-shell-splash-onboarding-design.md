@@ -34,7 +34,7 @@ The user's stated preference (recorded in the prior spec's "Next Steps") is to b
 | Heading font | Space Grotesk (bold) | Display headings only |
 | Body font | Inter | Body text, subtext, labels |
 | Active nav item | Text primary `#111111` | Since this app is light-themed, not the original dark-theme's Electric Blue |
-| Inactive nav item | Text secondary `#6B7280` | |
+| Inactive nav item | `#9CA3AF` | Distinct token from Text secondary — see Main Shell section |
 
 ## Architecture
 
