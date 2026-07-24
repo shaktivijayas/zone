@@ -24,7 +24,11 @@ void main() {
 
     expect(find.text('ZONE'), findsOneWidget);
 
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pump(const Duration(milliseconds: 1900));
+    expect(find.text('ZONE'), findsOneWidget);
+    expect(find.text('ONBOARDING'), findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 200));
     await tester.pumpAndSettle();
 
     expect(find.text('ONBOARDING'), findsOneWidget);
@@ -34,7 +38,10 @@ void main() {
     SharedPreferences.setMockInitialValues({onboardingCompleteKey: true});
     await tester.pumpWidget(buildTestApp());
 
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pump(const Duration(milliseconds: 1900));
+    expect(find.text('HOME'), findsNothing);
+
+    await tester.pump(const Duration(milliseconds: 200));
     await tester.pumpAndSettle();
 
     expect(find.text('HOME'), findsOneWidget);
