@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import '../../core/theme/app_colors.dart';
-import 'placeholder_tab.dart';
 
-class MainShell extends StatefulWidget {
-  const MainShell({super.key});
+class MainShell extends StatelessWidget {
+  const MainShell({super.key, required this.navigationShell});
 
-  @override
-  State<MainShell> createState() => _MainShellState();
-}
-
-class _MainShellState extends State<MainShell> {
-  int _index = 0;
+  final StatefulNavigationShell navigationShell;
 
   static const _tabs = [
     _TabSpec(icon: Icons.map_outlined, activeIcon: Icons.map, label: 'Map'),
@@ -21,20 +16,15 @@ class _MainShellState extends State<MainShell> {
   ];
 
   void _onTap(int index) {
-    if (index == _index) return;
+    if (index == navigationShell.currentIndex) return;
     HapticFeedback.selectionClick();
-    setState(() => _index = index);
+    navigationShell.goBranch(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _index,
-        children: [
-          for (final tab in _tabs) PlaceholderTab(label: tab.label),
-        ],
-      ),
+      body: navigationShell,
       bottomNavigationBar: DecoratedBox(
         decoration: const BoxDecoration(
           color: AppColors.background,
@@ -49,7 +39,7 @@ class _MainShellState extends State<MainShell> {
                   Expanded(
                     child: _NavItem(
                       spec: _tabs[i],
-                      selected: i == _index,
+                      selected: i == navigationShell.currentIndex,
                       onTap: () => _onTap(i),
                     ),
                   ),

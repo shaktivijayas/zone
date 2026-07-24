@@ -1,4 +1,6 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../device/device_service.dart';
 
 const onboardingCompleteKey = 'zone_onboarding_complete';
 
@@ -15,3 +17,8 @@ class OnboardingPrefs {
     await _prefs.setBool(onboardingCompleteKey, true);
   }
 }
+
+final onboardingPrefsProvider = Provider<OnboardingPrefs>((ref) {
+  final prefs = ref.watch(sharedPreferencesProvider);
+  return OnboardingPrefs(prefs);
+});

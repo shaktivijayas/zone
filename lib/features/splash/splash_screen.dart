@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/prefs/onboarding_prefs.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -20,10 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigateNext() async {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
-    final prefs = await SharedPreferences.getInstance();
-    final onboardingDone = OnboardingPrefs(prefs).isOnboardingComplete();
-    if (!mounted) return;
-    context.go(onboardingDone ? '/home' : '/onboarding');
+    final onboardingDone = ref.read(onboardingPrefsProvider).isOnboardingComplete();
+    context.go(onboardingDone ? '/home/map' : '/onboarding');
   }
 
   @override
