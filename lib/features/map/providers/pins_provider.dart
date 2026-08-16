@@ -24,7 +24,7 @@ class PinsNotifier extends AsyncNotifier<List<Pin>> {
   /// Re-fetches the pin list from the server. Used for pull-to-refresh and
   /// automatically after create/upvote so the UI reflects server state.
   Future<void> refresh() async {
-    state = const AsyncLoading<List<Pin>>().copyWithPrevious(state);
+    state = const AsyncLoading<List<Pin>>();
     state = await AsyncValue.guard(_fetch);
   }
 
@@ -38,12 +38,8 @@ class PinsNotifier extends AsyncNotifier<List<Pin>> {
     String? flair,
   }) async {
     final client = await ref.read(apiClientProvider.future);
-    final body = <String, dynamic>{
-      'text': text,
-      'lat': lat,
-      'lng': lng,
-      if (flair != null) 'flair': flair,
-    };
+    final body = <String, dynamic>{'text': text, 'lat': lat, 'lng': lng};
+    if (flair != null) body['flair'] = flair;
     final data = await client.post('/pins', body);
     final pin = Pin.fromJson(data as Map<String, dynamic>);
     await refresh();

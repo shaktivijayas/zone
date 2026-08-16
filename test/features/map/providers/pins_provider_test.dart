@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:zone/core/network/api_client.dart';
-import 'package:zone/features/map/models/pin.dart';
 import 'package:zone/features/map/providers/pins_provider.dart';
 
 Map<String, dynamic> _pinJson({
