@@ -29,7 +29,7 @@ void main() {
   ProviderContainer buildContainer(
     Future<http.Response> Function(http.Request) handler,
   ) {
-    final mockClient = MockClient((req) async => handler(req as http.Request));
+    final mockClient = MockClient((req) async => handler(req));
     final client = ApiClient(hashedDeviceId: 'test-hash', httpClient: mockClient, baseUrl: 'http://test.local');
     final container = ProviderContainer(
       overrides: [apiClientProvider.overrideWith((ref) async => client)],
