@@ -3,6 +3,9 @@ import '../../features/splash/splash_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/shell/main_shell.dart';
 import '../../features/shell/placeholder_tab.dart';
+import '../../features/map/map_screen.dart';
+import '../../features/feed/feed_screen.dart';
+import '../../features/community/community_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
@@ -14,17 +17,17 @@ final appRouter = GoRouter(
       branches: [
         StatefulShellBranch(
           routes: [
-            GoRoute(path: '/home/map', builder: (context, state) => const PlaceholderTab(label: 'Map')),
+            GoRoute(path: '/home/map', builder: (context, state) => const MapScreen()),
           ],
         ),
         StatefulShellBranch(
           routes: [
-            GoRoute(path: '/home/feed', builder: (context, state) => const PlaceholderTab(label: 'Feed')),
+            GoRoute(path: '/home/feed', builder: (context, state) => const FeedScreen()),
           ],
         ),
         StatefulShellBranch(
           routes: [
-            GoRoute(path: '/home/community', builder: (context, state) => const PlaceholderTab(label: 'Community')),
+            GoRoute(path: '/home/community', builder: (context, state) => const CommunityScreen()),
           ],
         ),
         StatefulShellBranch(

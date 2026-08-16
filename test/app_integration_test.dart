@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,9 @@ void main() {
     await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Map — coming in the next slice'), findsOneWidget);
+    expect(
+      find.descendant(of: find.byType(AppBar), matching: find.text('Map')),
+      findsOneWidget,
+    );
   });
 }
