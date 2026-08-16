@@ -22,7 +22,7 @@ class PostsNotifier extends AsyncNotifier<List<Post>> {
   /// (e.g. 422 moderation rejection, 400 missing fields).
   Future<void> createPost({required String title, required String body, String? flair}) async {
     final client = await ref.read(apiClientProvider.future);
-    await client.post('/posts', {'title': title, 'body': body, if (flair != null) 'flair': flair});
+    await client.post('/posts', {'title': title, 'body': body, 'flair': ?flair});
     await refresh();
   }
 
