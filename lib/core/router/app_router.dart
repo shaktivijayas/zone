@@ -2,10 +2,10 @@ import 'package:go_router/go_router.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/shell/main_shell.dart';
-import '../../features/shell/placeholder_tab.dart';
 import '../../features/map/map_screen.dart';
 import '../../features/feed/feed_screen.dart';
 import '../../features/community/community_screen.dart';
+import '../../features/profile/profile_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
@@ -32,7 +32,7 @@ final appRouter = GoRouter(
         ),
         StatefulShellBranch(
           routes: [
-            GoRoute(path: '/home/profile', builder: (context, state) => const PlaceholderTab(label: 'Profile')),
+            GoRoute(path: '/home/profile', builder: (context, state) => const ProfileScreen()),
           ],
         ),
       ],
